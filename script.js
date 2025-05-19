@@ -1,10 +1,27 @@
-function addTask() {
-	const input = document.getElementById("taskInput");
-	const taskText = input.value.trim();
-	if (taskText == "") return;
-	const li = document.createElement("li");
-	li.textContent = taskText;
-	li.onclick = () => li.remove();
-	document.getElementById("taskList").appentChild(li);
-	input.value = "";
-}
+<script>
+  document.getElementById("addButton").onclick = function () {
+    const taskInput = document.getElementById("taskInput");
+    const taskText = taskInput.value.trim();
+
+    if (taskText !== "") {
+      const listItem = document.createElement("li");
+
+      // Create text node
+      const taskNode = document.createTextNode(taskText);
+      listItem.appendChild(taskNode);
+
+      // Create delete button
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "❌";
+      deleteBtn.style.marginLeft = "10px";
+      deleteBtn.onclick = function () {
+        listItem.remove();
+      };
+
+      listItem.appendChild(deleteBtn);
+      document.getElementById("taskList").appendChild(listItem);
+
+      taskInput.value = "";
+    }
+  };
+</script>
